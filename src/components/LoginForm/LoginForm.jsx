@@ -1,15 +1,28 @@
+import { useDispatch } from "react-redux";
 import s from "./LoginForm.module.css";
 
 import { Field, Formik, Form, ErrorMessage } from "formik";
+import { loginThunk } from "../../redux/auth/operations";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
   };
 
   const handleSubmit = (values, options) => {
-    console.log(values);
+    dispatch(loginThunk(values))
+      .unwrap()
+      .then((res) => {
+        toast.success(`Welcome ${res.user.name}`);
+        navigate("/contacts", { replace: true });
+      })
+      .catch(() => toast.error("Invalid email or password"));
     options.resetForm();
   };
 
@@ -36,6 +49,9 @@ const LoginForm = () => {
             />
           </label>
           <button type="submit">Login</button>
+          <p className={s.redirectText}>
+            You do not have account yet <Link to="/register">Get it!</Link>
+          </p>
         </Form>
       </Formik>
     </div>

@@ -3,12 +3,11 @@ import Contact from "../Contact/Contact";
 import s from "./ContactList.module.css";
 import { Triangle } from "react-loader-spinner";
 import { selectFilteredContacts } from "../../redux/contacts/slice";
-import { selectError, selectLoading } from "../../redux/contacts/selectors";
+import { selectLoading } from "../../redux/contacts/selectors";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
   const loader = useSelector(selectLoading);
-  const error = useSelector(selectError);
 
   return (
     <div>
@@ -38,16 +37,6 @@ const ContactList = () => {
           </p>
         )
       )}
-
-      <div>
-        {error && (
-          <div className={s.error}>
-            <h2
-              className={s.errorText}
-            >{`Unfortunately the server returns this ${error}. Please try later :(`}</h2>
-          </div>
-        )}
-      </div>
     </div>
   );
 };

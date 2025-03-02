@@ -15,7 +15,7 @@ const ContactsPage = () => {
   }, [dispatch]);
   return (
     <div className={s.wrapper}>
-      <h1>Phone Book</h1>
+      <h2 className={s.bookTitle}>Phone Book</h2>
       <ContactForm />
       <SearchBox />
       <ContactList />

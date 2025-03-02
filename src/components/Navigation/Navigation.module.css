@@ -2,3 +2,8 @@
   color: gold;
   text-decoration: underline;
 }
+
+button {
+  background-color: inherit;
+  border: none;
+}
