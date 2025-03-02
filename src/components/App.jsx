@@ -1,22 +1,21 @@
-import ContactForm from "./ContactForm/ContactForm";
-import ContactList from "./ContactList/ContactList";
-import SearchBox from "./SearchBox/SearchBox";
-import s from "./App.module.css";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { fetchData } from "../redux/contacts/operations";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "../pages/HomePage/HomePage";
+import ContactsPage from "../pages/ContactsPage/ContactsPage";
+import RegisterPage from "../pages/RegisterPage/RegisterPage";
+import LoginPage from "../pages/LoginPage/LoginPage";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import Layout from "./Layout";
 
 export default function App() {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchData());
-  }, [dispatch]);
   return (
-    <section className={s.wrapper}>
-      <h1>Phone Book</h1>
-      <ContactForm />
-      <SearchBox />
-      <ContactList />
-    </section>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="/contacts" element={<ContactsPage />} />
+      </Route>
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
