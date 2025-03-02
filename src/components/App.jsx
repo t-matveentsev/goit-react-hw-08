@@ -4,7 +4,7 @@ import SearchBox from "./SearchBox/SearchBox";
 import s from "./App.module.css";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { fetchData } from "../redux/contactsOps";
+import { fetchData } from "../redux/contacts/operations";
 
 export default function App() {
   const dispatch = useDispatch();

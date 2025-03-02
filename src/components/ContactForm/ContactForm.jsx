@@ -2,8 +2,8 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./ContactForm.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { applySchema } from "../../helpers/schema";
-import { addContact } from "../../redux/contactsOps";
-import { selectContacts } from "../../redux/contactSlice";
+import { selectContacts } from "../../redux/contacts/selectors";
+import { addContact } from "../../redux/contacts/operations";
 
 const ContactForm = () => {
   const contacts = useSelector(selectContacts);
