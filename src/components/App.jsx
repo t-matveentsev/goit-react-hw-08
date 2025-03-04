@@ -21,9 +21,9 @@ export default function App() {
     dispatch(refreshUser());
   }, [dispatch]);
   return isRefreshing ? null : (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<HomePage />} />
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route
           path="/contacts"
           element={
@@ -32,22 +32,22 @@ export default function App() {
             </PrivateRoute>
           }
         />
-      </Route>
-      <Route
-        path="/register"
-        element={
-          <PublicRoute>
-            <RegisterPage />
-          </PublicRoute>
-        }
-      />
-      <Route
-        path="/login"
-        element={
-          <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
-        }
-      />
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        <Route
+          path="/register"
+          element={
+            <PublicRoute>
+              <RegisterPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RestrictedRoute component={<LoginPage />} redirectTo="/contacts" />
+          }
+        />
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Layout>
   );
 }

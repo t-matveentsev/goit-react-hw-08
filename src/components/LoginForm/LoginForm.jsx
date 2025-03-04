@@ -48,7 +48,7 @@ const LoginForm = () => {
               className={s.errorMessage}
             />
           </label>
-          <button type="submit">Login</button>
+          <button type="submit">Log In</button>
           <p className={s.redirectText}>
             You do not have account yet <Link to="/register">Get it!</Link>
           </p>

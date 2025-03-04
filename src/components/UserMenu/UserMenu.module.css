@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 12px;
+}
+.logoutBtn {
+  background-color: inherit;
+  border: none;
+  padding: 0 12px 0 0;
+}

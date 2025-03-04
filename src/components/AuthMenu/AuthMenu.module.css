@@ -1,8 +1,15 @@
 .link {
   display: inline-block;
   text-decoration: none;
-  padding: 12px;
+  padding: 0 12px 0 0;
   font-weight: 700;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  gap: 12px;
 }
 
 .active {
