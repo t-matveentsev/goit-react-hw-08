@@ -4,6 +4,7 @@ import s from "./RegisterForm.module.css";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { registerThunk } from "../../redux/auth/operations";
 import { Link } from "react-router-dom";
+import { usersRegister } from "../../helpers/schema";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,11 @@ const RegisterForm = () => {
 
   return (
     <div className={s.formWrapper}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={usersRegister}
+      >
         <Form className={s.form}>
           <label>
             <span>Name:</span>
@@ -51,10 +56,12 @@ const RegisterForm = () => {
             />
           </label>
           <button type="submit">Register</button>
-          <p className={s.redirectText}>
-            You already have account?
-            <Link to="/login"> Login</Link>
-          </p>
+          <div className={s.redirectInfo}>
+            <p>You already have account?</p>
+            <Link className={s.redirectLink} to="/login">
+              Log In
+            </Link>
+          </div>
         </Form>
       </Formik>
     </div>

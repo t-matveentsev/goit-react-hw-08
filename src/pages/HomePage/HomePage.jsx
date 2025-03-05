@@ -1,9 +1,13 @@
+import s from "./HomePage.module.css";
+
 const HomePage = () => {
   return (
-    <div>
-      Hi this is my private pet-project, little phone book, you can register
-      here and create your personal contacts
-    </div>
+    <section className={s.wrapper}>
+      <h2 className={s.homeTitle}>
+        Hi this is my private pet-project, little phone book, Here. you can
+        quickly and easily register and create your personal contact book
+      </h2>
+    </section>
   );
 };
 

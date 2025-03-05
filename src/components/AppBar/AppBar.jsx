@@ -4,14 +4,16 @@ import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import UserMenu from "../UserMenu/UserMenu";
 import AuthMenu from "../AuthMenu/AuthMenu";
 
-import s from "./Header.module.css";
+import s from "./AppBar.module.css";
 
 const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   return (
     <header className={s.header}>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+      <div className={s.navLinks}>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthMenu />}
+      </div>
     </header>
   );
 };

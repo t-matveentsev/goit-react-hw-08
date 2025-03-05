@@ -4,7 +4,7 @@ import s from "./LoginForm.module.css";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { loginThunk } from "../../redux/auth/operations";
 import { Link, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { usersLogin } from "../../helpers/schema";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -18,17 +18,23 @@ const LoginForm = () => {
   const handleSubmit = (values, options) => {
     dispatch(loginThunk(values))
       .unwrap()
-      .then((res) => {
-        toast.success(`Welcome ${res.user.name}`);
+      .then(() => {
         navigate("/contacts", { replace: true });
+        options.resetForm();
       })
-      .catch(() => toast.error("Invalid email or password"));
-    options.resetForm();
+      .catch(() =>
+        options.setFieldError("password", "invalid email or password")
+      )
+      .finally(() => options.setSubmitting(false));
   };
 
   return (
     <div className={s.formWrapper}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+      <Formik
+        initialValues={initialValues}
+        onSubmit={handleSubmit}
+        validationSchema={usersLogin}
+      >
         <Form className={s.form}>
           <label>
             <span>Email:</span>
@@ -49,9 +55,12 @@ const LoginForm = () => {
             />
           </label>
           <button type="submit">Log In</button>
-          <p className={s.redirectText}>
-            You do not have account yet <Link to="/register">Get it!</Link>
-          </p>
+          <div className={s.redirectInfo}>
+            <p>You do not have account yet?</p>
+            <Link className={s.redirectLink} to="/register">
+              Get it!
+            </Link>
+          </div>
         </Form>
       </Formik>
     </div>

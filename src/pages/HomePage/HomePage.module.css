@@ -1,0 +1,16 @@
+.wrapper {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .wrapper {
+    max-width: 1000px;
+  }
+}
+.homeTitle {
+  text-align: center;
+}
