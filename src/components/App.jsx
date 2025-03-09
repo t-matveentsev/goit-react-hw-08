@@ -5,12 +5,23 @@ import RegisterPage from "../pages/RegisterPage/RegisterPage";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 import Layout from "./Layout";
-import PrivateRoute from "../config/routes/PrivateRoute";
-import PublicRoute from "../config/routes/PublicRoute";
-import RestrictedRoute from "../config/routes/RestrictedRoute";
+import PrivateRoute from "./PrivateRoute";
+import PublicRoute from "./PublicRoute";
+import RestrictedRoute from "./RestrictedRoute";
+import { selectIsRefreshing } from "../redux/auth/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { refreshUser } from "../redux/auth/operations";
 
 export default function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
+  return isRefreshing ? null : (
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />

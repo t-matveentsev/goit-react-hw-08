@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import Navigation from "../Navigation/Navigation";
 import { selectIsLoggedIn } from "../../redux/auth/selectors";
 import UserMenu from "../UserMenu/UserMenu";
-import AuthMenu from "../AuthMenu/AuthMenu";
+import AuthMenu from "../AuthMenu/AuthNav";
 
 import s from "./AppBar.module.css";
 

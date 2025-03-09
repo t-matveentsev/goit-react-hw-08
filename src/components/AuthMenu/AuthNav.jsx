@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import s from "./AuthMenu.module.css";
+import s from "./AuthNav.module.css";
 import { NavLink } from "react-router-dom";
 
 const AuthMenu = () => {
